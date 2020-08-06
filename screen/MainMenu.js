@@ -48,25 +48,17 @@ export default class MainMenu extends React.Component{
     }
     
     componentWillUnmount() {       
-    AdMobInterstitial.removeAllListeners();
+        AdMobInterstitial.removeAllListeners();
     }    
 
     render(){        
         return(            
-            <Root>
-                <View style={styles.container}>         
-                    <Title title="Penghitung Aritmatika"/>
-                    <View style={styles.buttonList}>
-                        <MenuButton text="Cari Nilai Un" link="CariUn" props={this.props}/>
-                        <MenuButton text="Cari Nilai Sn" link="CariSn" props={this.props}/>
-                        <MenuButton text="Cari Nilai A" link="DiketA" props={this.props}/>
-                        <MenuButton text="Cari Nilai B" link="DiketB" props={this.props}/>
-                        <MenuButton text="Cari Jumlah Suku" link="CariJmlSuku" props={this.props}/>
-                    </View>
-                    <Help/>                    
-                    <Popup/>
-                </View>                    
-            </Root>  
+            <View style={styles.container}>         
+                <View style={styles.buttonList}>
+                    <MenuButton text="Aritmatika" link="AritmatikaMenu" props={this.props}/>
+                    <MenuButton text="Geometri" link="GeometriMenu" props={this.props}/>                    
+                </View>
+            </View>  
         )
     }
 }
@@ -74,7 +66,7 @@ export default class MainMenu extends React.Component{
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'column',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         alignItems: 'center',
         position: "relative",
         width: "100%",
@@ -82,7 +74,7 @@ const styles = StyleSheet.create({
     },
     buttonList: {
         flexDirection: 'column',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         alignItems: 'center',
         position: "relative",
         width: "100%",

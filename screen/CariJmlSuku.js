@@ -49,6 +49,7 @@ export default class CariJmlSuku extends React.Component{
     render(){        
         return(
             <View style = {styles.container}>    
+                <Text style={{fontSize:12}}>Note: Jangan gunakan pecahan(1/2) tapi gunakan bilangan bulat (0.5)</Text>
                 <TextInput 
                     style={styles.inputText}
                     placeholder="Masukan nilai Un Terakhir"

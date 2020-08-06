@@ -1,20 +1,19 @@
 import React from 'react';
 import {
-    View,
-    Button,
+    View, 
     Text,
-    TouchableOpacity,
     StyleSheet,
-    TextInput
+    TouchableOpacity,
+    TextInput,    
 } from 'react-native';
-
 import {    
     AdMobInterstitial,
 } from 'react-native-admob';
+  
 
-export default class CariA2 extends React.Component{
+export default class CariUnGeometri extends React.Component {    
     static navigationOptions = {
-        title: "Cari A (Sn dan B)"
+        title: 'Cari Nilai Un'        
     }
 
     constructor(props){
@@ -23,21 +22,20 @@ export default class CariA2 extends React.Component{
 
     state = {
         hasil: 0,
-        tSn : 0,
-        tN : 0,        
-        tB: 0
+        tA : 0,
+        tB : 0,
+        tN: 0,
     }
-    
-    cariA(tSn, tN, tB){
-        tSn = parseFloat(tSn);
-        tN = parseFloat(tN);
-        tB = parseFloat(tB);
-        var a = (tSn - (tN/2*(tN-1)*tB))/tN;
+        
+    cariUn(n, a, b){
+        a = parseFloat(a);
+        n = parseFloat(n);
+        b = parseFloat(b);
+        var un = a*(Math.pow(b,n-1));
 
         this.setState({
-            hasil: a
+            hasil: un
         });
-
         this.showInterstitial();
     }    
 
@@ -47,30 +45,34 @@ export default class CariA2 extends React.Component{
 
     render(){        
         return(
-            <View style = {styles.container}>   
-                <Text style={{fontSize:12}}>Note: Jangan gunakan pecahan(1/2) tapi gunakan bilangan bulat (0.5)</Text> 
+            <View style = {styles.container}>    
                 <TextInput 
                     style={styles.inputText}
-                    placeholder="Masukan nilai Sn"
+                    placeholder="Suku ke berapa?"
                     keyboardType="numeric"
-                    onChangeText={(val) => this.setState({tSn: val})}
+                    onChangeText={(val) => this.setState({tN: val})}
                 />
                 <TextInput 
                     style={styles.inputText}
-                    placeholder="Masukan nilai n"
+                    placeholder="Masukan nilai awal (a)"
                     keyboardType="numeric"
-                    onChangeText={(val) => this.setState({tN: val})}
-                />    
+                    onChangeText={(val) => this.setState({tA: val})}
+                />
                 <TextInput 
                     style={styles.inputText}
-                    placeholder="Masukan nilai b"
+                    placeholder="Masukan nilai rasio (r)"
                     keyboardType="numeric"
                     onChangeText={(val) => this.setState({tB: val})}
-                />             
+                />   
+                <Text>Rumus</Text>    
+                <View style={{flexDirection: 'row', alignItems: 'flex-start'}}>
+                    <Text style={{fontSize: 20, lineHeight: 30}}>Un = ar</Text>
+                    <Text style={{fontSize: 11, lineHeight: 18}}>n-1</Text>
+                </View>                         
                 <View style={styles.hasil}>    
                     <TouchableOpacity
                         style={styles.inputButton}
-                        onPress={() => this.cariA(this.state.tSn, this.state.tN, this.state.tB)}
+                        onPress={() => this.cariUn(this.state.tN, this.state.tA, this.state.tB)}
                     >
                         <Text style={styles.inputButtonText}>=</Text>
                     </TouchableOpacity>                

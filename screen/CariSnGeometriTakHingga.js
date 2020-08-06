@@ -12,9 +12,9 @@ import {
     AdMobInterstitial,
 } from 'react-native-admob';
 
-export default class CariA2 extends React.Component{
+export default class CariSnGeometriTakHingga extends React.Component{
     static navigationOptions = {
-        title: "Cari A (Sn dan B)"
+        title: 'Cari Nilai Sn'        
     }
 
     constructor(props){
@@ -23,21 +23,19 @@ export default class CariA2 extends React.Component{
 
     state = {
         hasil: 0,
-        tSn : 0,
-        tN : 0,        
-        tB: 0
+        tA : 0,
+        tB : 0,
+        tN: 0,
     }
     
-    cariA(tSn, tN, tB){
-        tSn = parseFloat(tSn);
-        tN = parseFloat(tN);
-        tB = parseFloat(tB);
-        var a = (tSn - (tN/2*(tN-1)*tB))/tN;
+    cariSn(a, b){
+        a = parseFloat(a);
+        b = parseFloat(b);
+        var sn = a/(1-b);
 
         this.setState({
-            hasil: a
+            hasil: sn
         });
-
         this.showInterstitial();
     }    
 
@@ -47,30 +45,28 @@ export default class CariA2 extends React.Component{
 
     render(){        
         return(
-            <View style = {styles.container}>   
-                <Text style={{fontSize:12}}>Note: Jangan gunakan pecahan(1/2) tapi gunakan bilangan bulat (0.5)</Text> 
+            <View style = {styles.container}>
+                <Text style={{fontSize:12}}>Note: Jangan gunakan pecahan(1/2) tapi gunakan bilangan bulat (0.5)</Text>
                 <TextInput 
                     style={styles.inputText}
-                    placeholder="Masukan nilai Sn"
+                    placeholder="Masukan nilai awal (a)"
                     keyboardType="numeric"
-                    onChangeText={(val) => this.setState({tSn: val})}
-                />
+                    onChangeText={(val) => this.setState({tA: val})}
+                />                
                 <TextInput 
                     style={styles.inputText}
-                    placeholder="Masukan nilai n"
-                    keyboardType="numeric"
-                    onChangeText={(val) => this.setState({tN: val})}
-                />    
-                <TextInput 
-                    style={styles.inputText}
-                    placeholder="Masukan nilai b"
+                    placeholder="Masukan nilai rasio (r)"
                     keyboardType="numeric"
                     onChangeText={(val) => this.setState({tB: val})}
-                />             
+                />         
+                <Text>Rumus</Text>    
+                <View style={{flexDirection: 'row', alignItems: 'flex-start'}}>                    
+                    <Text style={{fontSize: 20, lineHeight: 30}}>a/1-b</Text>
+                </View>              
                 <View style={styles.hasil}>    
                     <TouchableOpacity
                         style={styles.inputButton}
-                        onPress={() => this.cariA(this.state.tSn, this.state.tN, this.state.tB)}
+                        onPress={() => this.cariSn(this.state.tA, this.state.tB)}
                     >
                         <Text style={styles.inputButtonText}>=</Text>
                     </TouchableOpacity>                

@@ -46,7 +46,8 @@ export default class CariSn extends React.Component{
 
     render(){        
         return(
-            <View style = {styles.container}>    
+            <View style = {styles.container}>   
+                <Text style={{fontSize:12}}>Note: Jangan gunakan pecahan(1/2) tapi gunakan bilangan bulat (0.5)</Text> 
                 <TextInput 
                     style={styles.inputText}
                     placeholder="Suku ke berapa?"
@@ -55,16 +56,20 @@ export default class CariSn extends React.Component{
                 />
                 <TextInput 
                     style={styles.inputText}
-                    placeholder="Masukan nilai a"
+                    placeholder="Masukan nilai awal (a)"
                     keyboardType="numeric"
                     onChangeText={(val) => this.setState({tA: val})}
                 />
                 <TextInput 
                     style={styles.inputText}
-                    placeholder="Masukan nilai b"
+                    placeholder="Masukan nilai beda (b)"
                     keyboardType="numeric"
                     onChangeText={(val) => this.setState({tB: val})}
-                />                
+                />     
+                <Text>Rumus</Text>    
+                <View style={{flexDirection: 'row', alignItems: 'flex-start'}}>
+                    <Text style={{fontSize: 20, lineHeight: 30}}>n/2*(2*a+((n-1)*b))</Text>
+                </View>              
                 <View style={styles.hasil}>    
                     <TouchableOpacity
                         style={styles.inputButton}

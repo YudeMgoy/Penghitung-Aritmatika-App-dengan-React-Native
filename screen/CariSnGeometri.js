@@ -12,9 +12,9 @@ import {
     AdMobInterstitial,
 } from 'react-native-admob';
 
-export default class CariA2 extends React.Component{
+export default class CariSnGeometri extends React.Component{
     static navigationOptions = {
-        title: "Cari A (Sn dan B)"
+        title: 'Cari Nilai Sn'        
     }
 
     constructor(props){
@@ -23,21 +23,23 @@ export default class CariA2 extends React.Component{
 
     state = {
         hasil: 0,
-        tSn : 0,
-        tN : 0,        
-        tB: 0
+        tA : 0,
+        tB : 0,
+        tN: 0,
     }
     
-    cariA(tSn, tN, tB){
-        tSn = parseFloat(tSn);
-        tN = parseFloat(tN);
-        tB = parseFloat(tB);
-        var a = (tSn - (tN/2*(tN-1)*tB))/tN;
+    cariSn(n, a, b){
+        a = parseFloat(a);
+        n = parseFloat(n);
+        b = parseFloat(b);
+        var sn = b > 1 ?
+        a*(Math.pow(b,n)-1)/(b-1)
+        :
+        a*(1-Math.pow(b,n))/(1-b);
 
         this.setState({
-            hasil: a
+            hasil: sn
         });
-
         this.showInterstitial();
     }    
 
@@ -47,30 +49,43 @@ export default class CariA2 extends React.Component{
 
     render(){        
         return(
-            <View style = {styles.container}>   
-                <Text style={{fontSize:12}}>Note: Jangan gunakan pecahan(1/2) tapi gunakan bilangan bulat (0.5)</Text> 
+            <View style = {styles.container}>    
+                <Text style={{fontSize:12}}>Note: Jangan gunakan pecahan(1/2) tapi gunakan bilangan bulat (0.5)</Text>
                 <TextInput 
                     style={styles.inputText}
-                    placeholder="Masukan nilai Sn"
+                    placeholder="Suku ke berapa?"
                     keyboardType="numeric"
-                    onChangeText={(val) => this.setState({tSn: val})}
+                    onChangeText={(val) => this.setState({tN: val})}
                 />
                 <TextInput 
                     style={styles.inputText}
-                    placeholder="Masukan nilai n"
+                    placeholder="Masukan nilai awal (a)"
                     keyboardType="numeric"
-                    onChangeText={(val) => this.setState({tN: val})}
-                />    
+                    onChangeText={(val) => this.setState({tA: val})}
+                />
                 <TextInput 
                     style={styles.inputText}
-                    placeholder="Masukan nilai b"
+                    placeholder="Masukan nilai rasio (r)"
                     keyboardType="numeric"
                     onChangeText={(val) => this.setState({tB: val})}
-                />             
+                />         
+                <Text>Rumus</Text>    
+                <Text style={{fontSize: 14, lineHeight: 30}}>Jika r lebih dari 1</Text>
+                <View style={{flexDirection: 'row', alignItems: 'flex-start'}}>                    
+                    <Text style={{fontSize: 20, lineHeight: 30}}>a*(r</Text>
+                    <Text style={{fontSize: 11, lineHeight: 18}}>n-1</Text>
+                    <Text style={{fontSize: 20, lineHeight: 30}}>-1)/r-1</Text>
+                </View>              
+                <Text style={{fontSize: 14, lineHeight: 30}}>Jika r kurang dari 1 </Text>
+                <View style={{flexDirection: 'row', alignItems: 'flex-start'}}>                    
+                    <Text style={{fontSize: 20, lineHeight: 30}}>a*(1-r</Text>
+                    <Text style={{fontSize: 11, lineHeight: 18}}>n-1</Text>
+                    <Text style={{fontSize: 20, lineHeight: 30}}>)/1-r</Text>
+                </View>              
                 <View style={styles.hasil}>    
                     <TouchableOpacity
                         style={styles.inputButton}
-                        onPress={() => this.cariA(this.state.tSn, this.state.tN, this.state.tB)}
+                        onPress={() => this.cariSn(this.state.tN, this.state.tA, this.state.tB)}
                     >
                         <Text style={styles.inputButtonText}>=</Text>
                     </TouchableOpacity>                

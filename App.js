@@ -15,6 +15,11 @@ import CariB from './screen/CariB';
 import DiketA from './screen/DiketA';
 import DiketB from './screen/DiketB';
 import CariJmlSuku from './screen/CariJmlSuku';
+import AritmatikaMenu from './screen/AritmatikaMenu';
+import GeometriMenu from './screen/GeometriMenu';
+import CariUnGeometri from './screen/CariUnGeometri';
+import CariSnGeometri from './screen/CariSnGeometri';
+import CariSnGeometriTakHingga from './screen/CariSnGeometriTakHingga';
 
 const AppNavigator = createStackNavigator(
   {
@@ -24,8 +29,17 @@ const AppNavigator = createStackNavigator(
     CariSn: {
       screen: CariSn
     },
+    CariSnGeometri: {
+      screen: CariSnGeometri
+    },   
+    CariSnGeometriTakHingga: {
+      screen: CariSnGeometriTakHingga
+    },    
     CariUn: {
       screen: CariUn
+    },
+    CariUnGeometri:{
+      screen: CariUnGeometri
     },
     CariA: {
       screen: CariA
@@ -47,6 +61,12 @@ const AppNavigator = createStackNavigator(
     },
     DiketB: {
       screen: DiketB
+    },
+    AritmatikaMenu: {
+      screen: AritmatikaMenu
+    },
+    GeometriMenu:{
+      screen: GeometriMenu
     }
   },
   {initialRouteName:'Home'}
